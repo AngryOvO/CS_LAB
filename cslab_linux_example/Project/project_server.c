@@ -18,9 +18,13 @@
 
 int main(int argc, char* argv[]) 
 {
-	char buf[256];
+	char buf[65536];
 	struct sockaddr_in sin, cli;
 	int sd, ns, clientlen = sizeof(cli);
+	FILE *fp;
+	size_t bytesRead;
+	char filelink[1024];
+	char filename[1024];
 
 	if((sd = socket(AF_INET, SOCK_STREAM, 0)) == -1) // 소켓 생성
 	{
@@ -57,10 +61,6 @@ int main(int argc, char* argv[])
 			perror("accept");
 			exit(1);
 		}
-	
-		FILE *fp;
-		size_t bytesRead;
-		char filelink[256];
 
 		bytesRead = recv(ns, buf, sizeof(buf) - 1, 0);
 		if(bytesRead <= 0)
@@ -68,22 +68,28 @@ int main(int argc, char* argv[])
 			perror("recv");
 			exit(1);
 		}	
+		
 
 		buf[bytesRead] = '\0';
+		printf("%s",buf);
 	
-		char* targetaddress = strstr(buf, "113.198.137.118:6161/");
-		if(targetaddress != NULL)
-		{
-			strcpy(filelink, targetaddress + strlen("113.198.137.118:6161/"));
-		}
-	
-		filelink[strlen(filelink)] = '\0';
+		char* targetaddress = strtok(buf,"\n");
+		char* ptr = strtok(targetaddress, "/");
+		ptr = strtok(NULL, " ");
 		
-		sprintf(filelink, "%s/%s", argv[1],filelink);
+		strcpy(filename,ptr);
+		printf("%s\n",filename);
+	
+		strcpy(filelink,argv[1]);
+		strcat(filelink,"/");
+		strcat(filelink,filename);
+
+		printf("%s\n",filelink);
 
 		if((fp = fopen(filelink,"rb")) == NULL)
 		{
 			sprintf(filelink,"%s/index.html", argv[1]);
+			printf("\n\n%s\n\n",filelink);
 			if((fp = fopen(filelink,"rb")) == NULL)
 			{
 				sprintf(buf,"%s","NOT FOUND");
@@ -95,6 +101,17 @@ int main(int argc, char* argv[])
 				exit(1);
 			}
 		}
+		int i;
+		for(i = 0; i < 65536; i++)
+		{
+			buf[i] = '\0';
+		}
+
+		char http_response[1024];
+		sprintf(http_response, "HTTP/1.1  200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: %ld\r\n\r\n", bytesRead);
+		
+		send(ns, http_response, strlen(http_response), 0);
+
 
 		while((bytesRead = fread(buf, 1, sizeof(buf), fp)) > 0)
 		{
@@ -104,11 +121,13 @@ int main(int argc, char* argv[])
 				exit(1);
 			}
 		}
+		
+		printf("=====\n");
+		printf("%s\n",buf);
 
 		fclose(fp);
+		close(ns);
 	}
-
-	close(ns);
 	close(sd);
 
 	return 0;
