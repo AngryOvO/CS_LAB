@@ -25,6 +25,9 @@ int main(int argc, char* argv[])
 	size_t bytesRead;
 	char filelink[1024];
 	char filename[1024];
+	int num1, num2, sum;
+	char resultsum[255];
+
 
 	if((sd = socket(AF_INET, SOCK_STREAM, 0)) == -1) // 소켓 생성
 	{
@@ -74,7 +77,12 @@ int main(int argc, char* argv[])
 		printf("%s",buf);
 	
 		char* targetaddress = strtok(buf,"\n");
-		char* ptr = strtok(targetaddress, "/");
+		char* ptr;
+		ptr = strtok(targetaddress, "/");
+		while((ptr = strchr(targetaddress,'/')) != NULL)
+		{
+			ptr = strtok(targetaddress, "/");
+		}
 		ptr = strtok(NULL, " ");
 		
 		strcpy(filename,ptr);
@@ -88,27 +96,78 @@ int main(int argc, char* argv[])
 
 		if((fp = fopen(filelink,"rb")) == NULL)
 		{
-			sprintf(filelink,"%s/index.html", argv[1]);
-			printf("\n\n%s\n\n",filelink);
-			if((fp = fopen(filelink,"rb")) == NULL)
+			if(strstr(filelink,"total.cgi"))
 			{
-				sprintf(buf,"%s","NOT FOUND");
-				if(send(ns, buf, strlen(buf) + 1, 0) == -1)
+				char* ptr = strtok(filelink, "=");
+
+				ptr = strtok(NULL,"&");
+
+				char filenum1[256];
+				char filenum2[256];
+
+				strcpy(filenum1,ptr);
+
+				ptr = strtok(NULL, "=");
+			
+				ptr = strtok(NULL, "\0");
+
+				strcpy(filenum2,ptr);
+
+				num1 = atoi(filenum1);
+				num2 = atoi(filenum2);
+
+				sum = 0;
+			
+				int i = 0;
+
+				for(i = num1; i <= num2; i++)
+					sum = sum + i;
+			
+				sprintf(resultsum,"%d\n",sum);
+			
+				fp = fopen("example/result.txt","w+");
+
+				fputs(resultsum,fp);
+			}
+			else
+			{
+				sprintf(filelink,"%s/index.html", argv[1]);
+				printf("\n\n%s\n\n",filelink);
+
+				if((fp = fopen(filelink,"rb")) == NULL)
 				{
-					perror("send");
-					exit(1);
+					sprintf(filelink, "%s/notfound.html", argv[1]);
+					fp = fopen(filelink,"rb");
 				}
-				exit(1);
 			}
 		}
+
+		fseek(fp, 0, SEEK_END);
+		long int file_size = ftell(fp);
+		fseek(fp, 0, SEEK_SET);
+
 		int i;
 		for(i = 0; i < 65536; i++)
 		{
 			buf[i] = '\0';
 		}
 
-		char http_response[1024];
-		sprintf(http_response, "HTTP/1.1  200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: %ld\r\n\r\n", bytesRead);
+		char http_response[256];
+		char* http_type;
+
+
+		if(strstr(filelink, ".html"))
+			http_type = "text/html";
+		else if(strstr(filelink, ".gif"))
+			http_type = "image/gif";
+		else if(strstr(filelink, ".jpg") || strstr(filelink, ".jpeg"))
+			http_type = "image/jpeg";
+		else if(strstr(filelink, ".cgi") || strstr(filelink, ".txt"))
+			http_type = "text/plain";
+		else
+			http_type = "application/octet-stream";
+
+		sprintf(http_response, "HTTP/1.1  200 OK\r\nContent-Type: %s; charset=utf-8\r\nContent-Length: %ld\r\n\r\n",http_type , file_size);
 		
 		send(ns, http_response, strlen(http_response), 0);
 
