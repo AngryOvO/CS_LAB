@@ -1,8 +1,6 @@
 import time
 import os
 import psutil
-import dis
-
 
 def check_cpu_memory():
 
@@ -12,25 +10,24 @@ def check_cpu_memory():
     memory_usage = round(py.memory_info()[0] / 2.**30, 2)
     print("memory usage :", memory_usage, "%")
 
-def memory_allocation():
+def malloc_300M():
 
     print("Python_memory_allocation")
     print("data type: list")
-    print("data size: 100000000")
-
-    starttime = time.time()
+    print("data size: 300000000")
 
     y = []
-    for i in range(100000000):
-        y.append(i)
-
-    endtime = time.time()
-    print("process time :", endtime - starttime)
+    for i in range(300000000):
+     y.append(i)
 
     check_cpu_memory()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
+    
+    starttime = time.time()
 
-    dis.dis(memory_allocation)
+    malloc_300M()
 
+    endtime = time.time()
 
+    print("process time :", endtime - starttime)
