@@ -21,7 +21,8 @@ int main(int argc, char* argv[])
 	char buf[65536];
 	struct sockaddr_in sin, cli;
 	int sd, ns, clientlen = sizeof(cli);
-	FILE *fp;
+	FILE * fp;
+	FILE * fp2;
 	size_t bytesRead;
 	char filelink[1024];
 	char filename[1024];
@@ -29,6 +30,7 @@ int main(int argc, char* argv[])
 	char resultsum[255];
 
 
+	
 	if((sd = socket(AF_INET, SOCK_STREAM, 0)) == -1) // 소켓 생성
 	{
 		perror("socket");
@@ -56,6 +58,7 @@ int main(int argc, char* argv[])
 		perror("listen");
 		exit(1);
 	}
+	fp2 = fopen("log.txt", "w");
 	while(1)
 	{
 
@@ -74,7 +77,6 @@ int main(int argc, char* argv[])
 		
 
 		buf[bytesRead] = '\0';
-		printf("%s",buf);
 	
 		char* targetaddress = strtok(buf,"\n");
 		char* ptr;
@@ -86,13 +88,10 @@ int main(int argc, char* argv[])
 		ptr = strtok(NULL, " ");
 		
 		strcpy(filename,ptr);
-		printf("%s\n",filename);
 	
 		strcpy(filelink,argv[1]);
 		strcat(filelink,"/");
 		strcat(filelink,filename);
-
-		printf("%s\n",filelink);
 
 		if((fp = fopen(filelink,"rb")) == NULL)
 		{
@@ -132,7 +131,6 @@ int main(int argc, char* argv[])
 			else
 			{
 				sprintf(filelink,"%s/index.html", argv[1]);
-				printf("\n\n%s\n\n",filelink);
 
 				if((fp = fopen(filelink,"rb")) == NULL)
 				{
@@ -171,7 +169,6 @@ int main(int argc, char* argv[])
 		
 		send(ns, http_response, strlen(http_response), 0);
 
-
 		while((bytesRead = fread(buf, 1, sizeof(buf), fp)) > 0)
 		{
 			if(send(ns,buf,bytesRead,0) == -1)
@@ -181,12 +178,18 @@ int main(int argc, char* argv[])
 			}
 		}
 		
-		printf("=====\n");
-		printf("%s\n",buf);
+		char text_log[256];
 
+		sprintf(text_log, "%s_%s_%ld\n", inet_ntoa(cli.sin_addr), filelink, file_size);
+		fp2 = fopen("log.txt","a");
+		fputs(text_log,fp2);
+		
+
+		fclose(fp2);
 		fclose(fp);
 		close(ns);
 	}
+	fclose(fp2);
 	close(sd);
 
 	return 0;
