@@ -14,7 +14,7 @@ def malloc_300M():
 
     print("Python_memory_allocation")
     print("data type: list")
-    print("data size: 300000000")
+    print("data size: 100000000")
 
     y = []
     for i in range(100000000):
