@@ -39,6 +39,11 @@ y = []
 3. JAVA의 메모리 할당 시간 체크
 JAVA 또한 마찬가지로 진행
 
+실행 결과
+
+
+<img width="437" alt="JAVA_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/7016ab03-4ec3-4f9d-a3dd-48b7a4eb70a6">
+
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
