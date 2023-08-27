@@ -8,7 +8,7 @@ Rocky-Linux 9.2 SSH 서버
 CPU : Intel Core i7 - 4790 3.60GHz
 RAM : 7.5Gi
 
-### 실험 내용
+### 언어별 동일한 크기의 메모리 할당 시간 비교
 
 1. Python의 메모리 할당 시간 체크
 
@@ -35,7 +35,6 @@ y = []
 
 <img width="259" alt="C_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/5df11d6c-ced2-44e9-9896-36b40aa5420a">
 
-
 3. JAVA의 메모리 할당 시간 체크
 JAVA 또한 마찬가지로 진행
 
@@ -44,7 +43,7 @@ JAVA 또한 마찬가지로 진행
 
 <img width="437" alt="JAVA_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/7016ab03-4ec3-4f9d-a3dd-48b7a4eb70a6">
 
-### Installing
+### Python의 메모리 할당량 별 실행시간 변화
 
 A step by step series of examples that tell you how to get a development env running
 
@@ -62,17 +61,25 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+## Python의 실행시간 분석
 
-Explain how to run the automated tests for this system
+다른 언어에 비해 파이썬으로 작성한 코드의 실행시간이 현저하게 느린 이유에 대한 몇가지 원인들을 찾아보았다.
 
-### Break down into end to end tests
+대표적으로 아래 세 가지를 꼽을 수 있었다.
+1. 동적 타입 검사
+2. GC (가비지 컬렉션)
+3. 인터프리터
 
-Explain what these tests test and why
+각 원인이 파이썬 실행시간에 어떠한 차이를 주는지에 대한 실험을 진행했다.
 
-```
-Give an example
-```
+
+### 동적 타입 검사 Dynamic type checking
+
+실행시간에 변수나 객체의 타입을 검사하는 것
+
+Python이 실험 했던 C와 Java와 다른 대표적인 특징 중 하나이다.
+리스트에서 타입에 해당하는 
+
 
 ### And coding style tests
 
