@@ -26,6 +26,8 @@ y = []
 &nbsp<img width="365" alt="PYTHON_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/c2020d9b-e965-4af6-9374-bcc07c923381">
 
 
+
+
 2. C의 메모리 할당 시간 체크
 파이썬의 리스트와 C의 배열이 완전히 동일한 구조가 아니기 때문에 파이썬에서 메모리에 할당한 리스트의 크기를 계산해 그 크기에 근사한 양을 C에서 배열로 할당
 대략 인덱스가 6억정도의 정수형 배열을 만들 수 있으며 그에 해당하는 프로세스 실행시간을 체크
@@ -34,6 +36,8 @@ y = []
 
 
 &nbsp<img width="259" alt="C_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/5df11d6c-ced2-44e9-9896-36b40aa5420a">
+
+
 
 3. JAVA의 메모리 할당 시간 체크
 JAVA 또한 마찬가지로 진행
