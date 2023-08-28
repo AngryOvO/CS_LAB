@@ -82,19 +82,45 @@ End with an example of getting some data out of the system or using it for a lit
 
 ### 동적 타입 검사 Dynamic type checking
 
-실행시간에 변수나 객체의 타입을 검사하는 것
+실행시간에 변수나 객체의 타입을 검사하는 기능이다.
 
-Python이 실험 했던 C와 Java와 다른 대표적인 특징 중 하나이다.
-리스트에서 타입에 해당하는 
+Python이 C와 Java와 다른 대표적인 특징 중 하나이다.
+
+파이썬은 명시적으로 타입을 선언하지 않기 때문에 실행 시간에 동적으로 타입을 판단한다.
+당연하게도 실행시간에 모든 데이터타입을 검사하는 과정이 포함되므로 오버헤드가 발생한다.
+파이썬에서 타입 힌트와 정적 검사 도구를 제공하지만 실제로 동적 타입 검사를 실행하지 않는 방법은 존재하지 않는다.
+
+실제로 타입 힌트와 명시적으로 데이터타입을 표기하더라도 실행시간에 큰 차이가 없다는 것을 다음 실행 결과를 통해 알 수 있다.
+
+실행 결과 (명시적으로 리스트에 들어올 데이터의 타입을 정한 경우)
 
 
-### And coding style tests
 
-Explain what these tests test and why
 
-```
-Give an example
-```
+<img width="688" alt="PYTHON_static_typing" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/a56c1919-f303-4583-8c95-8253d7715838">
+
+
+
+동적 타입검사가 실행시간에 큰 영향을 주지 않아 보이지만, 후에 설명할 인터프리터에서 실행시간과의 영향에 대해 다시 알아볼 것이다.
+
+### GC 가비지 컬렉션 
+
+할당을 해제한 메모리들을 수집해 관리하는 기능이다.
+
+지금까지의 테스트 코드는 이번 실험 환경의 메모리의 약 70퍼센트를 할당하고 해제하는 과정을 반복한다.
+그 과정에서 가비지 컬렉션도 마찬가지로 메모리를 수집하고 정리를 반복한다.
+가비지 컬렉션의 활동에 대한 오버헤드가 프로세스 실행시간에 얼마나 큰 영향을 미치는지를 알아보자.
+
+기존 테스트 코드에서 메모리를 할당하는 시점부터 종료되는 시점까지 가비지 컬렉션을 비활성화 했을 때의 시간 차이를 보면 아래와 같다
+
+실행 결과
+
+
+
+<img width="657" alt="PYTHON_gc_disable" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/cc0f4bd6-369e-4a33-bbba-9c70153f27d5">
+
+
+
 
 ## Deployment
 
