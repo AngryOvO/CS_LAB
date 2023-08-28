@@ -23,7 +23,7 @@ y = []
 실행 결과
 
 
-&nbsp<img width="365" alt="PYTHON_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/c2020d9b-e965-4af6-9374-bcc07c923381">
+<img width="365" alt="PYTHON_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/c2020d9b-e965-4af6-9374-bcc07c923381">
 
 
 
@@ -35,7 +35,7 @@ y = []
 실행 결과 (컴파일러의 최적화 옵션을 끈 상태로 실험을 진행)
 
 
-&nbsp<img width="259" alt="C_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/5df11d6c-ced2-44e9-9896-36b40aa5420a">
+<img width="259" alt="C_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/5df11d6c-ced2-44e9-9896-36b40aa5420a">
 
 
 
@@ -46,6 +46,9 @@ JAVA 또한 마찬가지로 진행
 
 
 <img width="437" alt="JAVA_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/7016ab03-4ec3-4f9d-a3dd-48b7a4eb70a6">
+
+
+
 
 ### Python의 메모리 할당량 별 실행시간 변화
 
