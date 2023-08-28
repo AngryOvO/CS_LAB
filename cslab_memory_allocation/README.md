@@ -23,7 +23,7 @@ y = []
 실행 결과
 
 
-<img width="365" alt="PYTHON_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/c2020d9b-e965-4af6-9374-bcc07c923381">
+&nbsp<img width="365" alt="PYTHON_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/c2020d9b-e965-4af6-9374-bcc07c923381">
 
 
 2. C의 메모리 할당 시간 체크
@@ -33,7 +33,7 @@ y = []
 실행 결과 (컴파일러의 최적화 옵션을 끈 상태로 실험을 진행)
 
 
-<img width="259" alt="C_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/5df11d6c-ced2-44e9-9896-36b40aa5420a">
+&nbsp<img width="259" alt="C_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/5df11d6c-ced2-44e9-9896-36b40aa5420a">
 
 3. JAVA의 메모리 할당 시간 체크
 JAVA 또한 마찬가지로 진행
