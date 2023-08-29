@@ -35,6 +35,7 @@ y = []
 실행 결과 (컴파일러의 최적화 옵션을 끈 상태로 실험을 진행)
 
 
+
 <img width="259" alt="C_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/5df11d6c-ced2-44e9-9896-36b40aa5420a">
 
 
@@ -43,6 +44,7 @@ y = []
 JAVA 또한 마찬가지로 진행
 
 실행 결과
+
 
 
 <img width="437" alt="JAVA_1" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/7016ab03-4ec3-4f9d-a3dd-48b7a4eb70a6">
@@ -121,10 +123,16 @@ Python이 C와 Java와 다른 대표적인 특징 중 하나이다.
 
 
 
+실행시간에 가비지 컬렉션이 큰 영향을 주지 않는 것을 확인했다.
+또한 JAVA에도 가비지 컬렉션을 내장하고 있는데 C와 속도차이가 크게 나지 않는 것에서 Python의 97초 가량의 실행시간에는 가비지 컬렉션이
+큰 영향을 주지 않는다는 것을 한번 더 확인할 수 있었다.
 
-## Deployment
 
-Add additional notes about how to deploy this on a live system
+## 인터프리터
+
+C와 JAVA와 Python이 가장 큰 차이를 보이는 특징은 Python이 인터프리터 언어라는 점이다.
+애초에 Python의 동작 방식에서 다른 언어와 차이가 있다.
+실행시간에 파이썬 코드가 바이트 코드로 변환되어 한 라인씩 실행한다. 
 
 ## Built With
 
