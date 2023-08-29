@@ -82,7 +82,7 @@ End with an example of getting some data out of the system or using it for a lit
 각 원인이 파이썬 실행시간에 어떠한 차이를 주는지에 대한 실험을 진행했다.
 
 
-### 동적 타입 검사 Dynamic type checking
+## 동적 타입 검사 Dynamic type checking
 
 실행시간에 변수나 객체의 타입을 검사하는 기능이다.
 
@@ -105,7 +105,7 @@ Python이 C와 Java와 다른 대표적인 특징 중 하나이다.
 
 동적 타입검사가 실행시간에 큰 영향을 주지 않아 보이지만, 후에 설명할 인터프리터에서 실행시간과의 영향에 대해 다시 알아볼 것이다.
 
-### GC 가비지 컬렉션 
+## GC 가비지 컬렉션 
 
 할당을 해제한 메모리들을 수집해 관리하는 기능이다.
 
