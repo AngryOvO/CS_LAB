@@ -52,7 +52,7 @@ JAVA 또한 마찬가지로 진행
 
 
 
-### Python의 메모리 할당량 별 실행시간 변화
+## Python의 메모리 할당량 별 실행시간 변화
 
 A step by step series of examples that tell you how to get a development env running
 
