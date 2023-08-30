@@ -184,7 +184,8 @@ PyPy3는 컴파일 시간이 존재한다고 해서 동적 타입 검사를 수�
 
 
 
-
+실행시간이 7초대로 기존 Cpython에 비해 월등하게 빠른 시간이다.
+JIT 컴파일러를 사용한 효과가 실행시간에 큰 영향을 미친다는 것을 알 수 있었다.
 ### Cpython과 PyPy3의 메모리 할당량 별 실행시간 변화
 
 ![차트](https://github.com/AngryOvO/linux_kernel/assets/101005580/39f958b2-7b4b-4ee3-b930-ef3ae74cca87)
