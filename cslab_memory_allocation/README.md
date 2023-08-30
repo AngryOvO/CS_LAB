@@ -192,26 +192,17 @@ JIT 컴파일러를 사용한 효과가 실행시간에 큰 영향을 미친다�
 
 
 
-## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+## 결론
+메모리 할당량이 증가할 수록 Cpython은 할당 시간이 급격하게 증가하는 것을 확인할 수 있다.
+PyPy3는 그에 비해 시간의 증가 폯이 완만하다.
+이는 파이썬의 리스트타입을 활용한 메모리 할당의 작업에서 PyPy3가 성능이 더 뛰어나다고 볼 수 있다.
+즉 특정 모듈이나 라이브러리를 사용하지 않은 상태에서 파이썬 문법에 대한 작업은 PyPy3 인터프리터를 사용하는 것이 성능 면에서 좋을 것이라는 결론이 나온다.
 
-## Versioning
+하지만 대부분의 파이썬 라이브러리는 Cpython을 기반으로 제작되었기 라이브러리가 PyPy3 인터프리터 환경을 지원하지 않는다면
+다양한 파이썬 라이브러리를 사용할 수 없다. 또한 Cpython은 C를 통해 구현되었기 때문에 쉽게 C확장 모듈을 사용할 수 있는 환경을 제공한다.
+실험에 사용했던 Numpy와 같이 수치 해석 및 계산 능력에서 리스트 타입에 비해 큰 장점을 가지는 모듈들이 많이 존재하고, 이를 쉽게 사용하기 위해서는 Cpython 인터프리터의 사용을 권장한다.
+PyPy3가 성능 면에서 월등히 뛰어나지만 기존 Python의 공식 인터프리터인 Cpython의 안정성과 다양한 플랫폼 지원 등을 따라잡지 못한다면 기존 Cpython을 쉽게 대체할 수는 없다.
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+소형 임베디드 시스템을 기준으로 봐도 JIT 컴파일러를 포함한 PyPy3가 Cpython에 비해 무겁지만 성능 면에서 뛰어나기 때문에 프로젝트의 제약 조건, 성능 요구사항 등 여러 사항을 고려한다면 어떤 PyPy3와 Cpython들 중 어떤것이 더 좋은 인터프리터다라고 단정지을 수는 없을 것 같다.
+메모리 사용량을 극한까지 사용하지 않는 이상 Cpython도 충분히 안정적인 성능을 보여주기 때문에 사용자가 프로젝트에서 추구하는 방향에 맞춰 그에 맞는 인터프리터를 선택하는 것이 가장 바람직하다.
