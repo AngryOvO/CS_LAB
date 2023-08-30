@@ -52,12 +52,6 @@ JAVA 또한 마찬가지로 진행
 
 
 
-## Python의 메모리 할당량 별 실행시간 변화
-
-
-![차트](https://github.com/AngryOvO/linux_kernel/assets/101005580/39f958b2-7b4b-4ee3-b930-ef3ae74cca87)
-
-
 
 ## Python의 실행시간 분석
 
@@ -189,6 +183,11 @@ PyPy3는 컴파일 시간이 존재한다고 해서 동적 타입 검사를 수�
 <img width="577" alt="PYTHON_pypy" src="https://github.com/AngryOvO/linux_kernel/assets/101005580/87a7409a-f19a-4b75-bb6c-ec54ac526da4">
 
 
+
+
+### Cpython과 PyPy3의 메모리 할당량 별 실행시간 변화
+
+![차트](https://github.com/AngryOvO/linux_kernel/assets/101005580/39f958b2-7b4b-4ee3-b930-ef3ae74cca87)
 
 
 
